@@ -5,16 +5,11 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
-  IonContent,
-  IonHeader,
-  IonIcon,
   IonInput,
+  IonItem,
   IonLabel,
   IonPage,
-  IonTitle,
-  IonToolbar,
 } from "@ionic/react";
-import { eye, eyeOff } from "ionicons/icons";
 import "./Login.css";
 
 const Login: React.FC = () => {
@@ -39,10 +34,20 @@ const Login: React.FC = () => {
             </IonCardHeader>
             <IonCardContent>
               <div className="input-container">
+                {/* <IonItem>
+                <IonLabel position="stacked">Username *</IonLabel>
                 <IonInput
                   type="text"
-                  label="Username * "
+                  value={username}
+                  placeholder="Enter your username"
+                  onIonChange={(e) => setUsername(e.detail.value!)}
+                ></IonInput>
+                </IonItem> */}
+                <IonInput
+                  type="text"
+                  label="Username *"
                   labelPlacement="stacked"
+                  required
                   value={username}
                   placeholder="Enter your username"
                   onIonChange={(e) => setUsername(e.detail.value!)}
@@ -52,6 +57,7 @@ const Login: React.FC = () => {
                 <IonInput
                   label="Password"
                   labelPlacement="stacked"
+                  required
                   type={showPassword ? "text" : "password"}
                   value={password}
                   placeholder="Enter your password"
@@ -59,7 +65,9 @@ const Login: React.FC = () => {
                 ></IonInput>
               </div>
 
-              <IonButton expand="full" className="custom-button">SIGN IN</IonButton>
+              <IonButton expand="block" type="submit" className="custom-button">
+                SIGN IN
+              </IonButton>
             </IonCardContent>
           </IonCard>
         </div>

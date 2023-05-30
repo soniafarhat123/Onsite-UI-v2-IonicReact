@@ -5,20 +5,18 @@
   height: 100vh;
   background-color: #dbe3f2;
 }
+.login-card {
+  margin-top: 40px;
+  width: 90%;
+  display: block;
+}
+
 .login-card-container {
   max-width: 320px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
-.login-card {
-  margin-top: 40px;
-  height: 320px;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
 }
 
 .logo-image {
@@ -33,8 +31,17 @@
 .input-container {
   margin-bottom: 20px; /* Adjust the margin as needed */
 }
+
 .card-subtitle {
   font-size: 18px;
   margin-top: 20px;
+  margin-bottom: 10px;
+  color: #091e42;
+  font-weight: bold;
+}
+.custom-button {
+  height: 42px;
+  font-size: 12px;
+  font-weight: 700;
   margin-bottom: 10px;
 }
