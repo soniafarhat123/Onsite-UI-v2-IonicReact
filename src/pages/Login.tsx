@@ -5,9 +5,8 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
+  IonImg,
   IonInput,
-  IonItem,
-  IonLabel,
   IonPage,
 } from "@ionic/react";
 import "./Login.css";
@@ -21,7 +20,7 @@ const Login: React.FC = () => {
     <IonPage>
       <div className="login-page-container">
         <div className="login-card-container">
-          <img
+          <IonImg
             src="/assets/images/logo-OnSite.4873292a.png"
             className="logo-image"
             alt="logo-onsite"
@@ -34,15 +33,6 @@ const Login: React.FC = () => {
             </IonCardHeader>
             <IonCardContent>
               <div className="input-container">
-                {/* <IonItem>
-                <IonLabel position="stacked">Username *</IonLabel>
-                <IonInput
-                  type="text"
-                  value={username}
-                  placeholder="Enter your username"
-                  onIonChange={(e) => setUsername(e.detail.value!)}
-                ></IonInput>
-                </IonItem> */}
                 <IonInput
                   type="text"
                   label="Username *"
