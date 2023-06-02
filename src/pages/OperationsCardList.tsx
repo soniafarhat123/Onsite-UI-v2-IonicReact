@@ -20,7 +20,7 @@ import {
   power,
   sunny,
   moon,
-  star,
+  logOut,
 } from "ionicons/icons";
 import "./OperationsCard.css";
 import IonCardComponent from "../components/IonCardComponent";
@@ -30,11 +30,11 @@ const OperationsCardList: React.FC<{
   toggleDarkMode: () => void;
 }> = ({ darkMode, toggleDarkMode }) => {
   const listOps = [
-    { titre: "Formulaires", desc: "..............." },
-    { titre: "Opération de test", desc: "fffffffffffffff" },
-    { titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { titre: "Outils de gestion", desc: "fffffffffffffff" },
+    { id: 1, titre: "Formulaires", desc: "..............." },
+    { id: 2, titre: "Opération de test", desc: "fffffffffffffff" },
+    { id: 3, titre: "Outils de gestion", desc: "fffffffffffffff" },
+    { id: 4, titre: "Outils de gestion", desc: "fffffffffffffff" },
+    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
   ];
   const [viewMode, setViewMode] = useState("cards");
   const toggleViewMode = () => {
@@ -63,7 +63,7 @@ const OperationsCardList: React.FC<{
             {/* <IonIcon slot="start" icon={darkMode ? sunny : moon}  onClick={toggleDarkMode}/> */}
           </IonButtons>
           <IonButtons slot="primary">
-            <IonButton>
+            <IonButton href="/Login">
               <IonIcon slot="icon-only" icon={power} color="danger"></IonIcon>
             </IonButton>
           </IonButtons>
@@ -79,13 +79,14 @@ const OperationsCardList: React.FC<{
                 alt="Silhouette of mountains"
                 src="https://ionicframework.com/docs/img/demos/card-media.png"
                 title={e.titre}
+                key={e.id}
               />
             ))}
           </div>
         ) : (
           <IonList inset={true}>
             {listOps.map((e) => (
-              <IonItem button lines="full">
+              <IonItem button lines="full" key={e.id}>
                 <IonThumbnail slot="start">
                   <img
                     alt="Silhouette of mountains"
