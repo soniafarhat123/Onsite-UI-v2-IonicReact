@@ -1,0 +1,39 @@
+.toolbar-title {
+  font-size: 24px;
+}
+.ion-cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.ion-card {
+  width: 140px;
+  margin: 8px;
+}
+@media screen and (min-width: 375px) {
+  .ion-card {
+    width: 170px;
+  }
+}
+@media screen and (min-width: 412px) {
+  .ion-card {
+    width: 190px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .ion-card {
+    width: 210px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .ion-card {
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .ion-card {
+    width: 300px;
+  }
+}
