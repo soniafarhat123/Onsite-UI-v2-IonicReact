@@ -13,6 +13,11 @@ import {
   IonLabel,
   IonThumbnail,
   IonAvatar,
+  IonFab,
+  IonFabButton,
+  IonPopover,
+  IonFabList,
+  IonSearchbar,
 } from "@ionic/react";
 import {
   appsOutline,
@@ -21,6 +26,8 @@ import {
   sunny,
   moon,
   logOut,
+  chevronUp,
+  trashBin,
 } from "ionicons/icons";
 import "./OperationsCard.css";
 import IonCardComponent from "../components/IonCardComponent";
@@ -32,49 +39,45 @@ const OperationsCardList: React.FC<{
   const listOps = [
     { id: 1, titre: "Formulaires", desc: "..............." },
     { id: 2, titre: "Opération de test", desc: "fffffffffffffff" },
-    { id: 3, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 4, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
-    { id: 5, titre: "Outils de gestion", desc: "fffffffffffffff" },
+    { id: 3, titre: "Outils de gestion", desc: "fffffffffffffff" }, 
+    { id: 4, titre: "Outils de Formulaire", desc: "fffffffffffffff" }, 
+    { id: 5, titre: "Outils de test", desc: "fffffffffffffff" }, 
+    
   ];
   const [viewMode, setViewMode] = useState("cards");
   const toggleViewMode = () => {
     setViewMode((prevMode) => (prevMode === "cards" ? "list" : "cards"));
   };
-
   //listMock.map((e)=>console.log(e.titre))
+  /// Modal ///
+  const [showPopover, setShowPopover] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const listModal = [
+    { id: 1, titre: "Modal 1" },
+    { id: 2, titre: "Modal 2" },
+    { id: 3, titre: "Modal 3" },
+    { id: 4, titre: "Modal 4" },
+    { id: 5, titre: "Modal 5" },
+  ];
+
+  const handleClickFab = () => {
+    setShowPopover(true);
+  };
+  const handleItemClick = (item: any) => {
+    setSelectedItem(item.titre);
+    setShowPopover(false);
+  };
+  /// Search ///
+  const [results, setResults] = useState<string[]>(listOps.map((e) => e.titre));
+
+  const handleInput = (ev : CustomEvent) =>{
+    let query = '';
+    const target = ev.target as HTMLIonSearchbarElement;
+    if(target) query = target.value!.toLocaleLowerCase();
+
+    setResults(listOps.filter((item) => item.titre.toLowerCase().indexOf(query) > -1).map((item) => item.titre));
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -104,22 +107,57 @@ const OperationsCardList: React.FC<{
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        {/* / Search Input/ */}
+        <IonSearchbar debounce={1000} clearIcon={trashBin} onIonInput={handleInput}></IonSearchbar>
+        {/* //////////////////////////////////////////////////////////////////////// */}
+        {/* / Select Modal / */}
+        <IonFab slot="fixed" vertical="bottom" horizontal="end">
+          <IonButton>{selectedItem ? selectedItem : "Selected Item"}</IonButton>
+          <IonButton id="select-icon" onClick={handleClickFab}>
+            <IonIcon icon={chevronUp}></IonIcon>
+          </IonButton>
+          <IonFabList side="top">
+            
+            <IonPopover
+              isOpen={showPopover}
+              onDidDismiss={() => setShowPopover(false)}
+              trigger="select-icon"
+              side="top"
+            >
+              <div className="ion-popover">
+              <IonList
+                className={
+                  listModal.length > 11 ? "scrollable-list" : "ion-list-modal"
+                }
+              >
+                {listModal.map((e) => (
+                  <IonItem button key={e.id} onClick={() => handleItemClick(e)}>
+                    {e.titre}
+                  </IonItem>
+                ))}
+              </IonList>
+              </div>
+            </IonPopover>
+
+          </IonFabList>
+        </IonFab>
+        {/* //////////////////////////////////////////////////////////////////////////////// */}
         {viewMode === "cards" ? (
           <div className="ion-cards">
-            {listOps.map((e) => (
+            {results.map((e) => (
               <IonCardComponent
                 classname="ion-card"
                 alt="Silhouette of mountains"
                 src="https://ionicframework.com/docs/img/demos/card-media.png"
-                title={e.titre}
-                key={e.id}
+                title={e}
+                key={e}
               />
             ))}
           </div>
         ) : (
           <IonList inset={true}>
-            {listOps.map((e) => (
-              <IonItem button lines="full" key={e.id}>
+            {results.map((e) => (
+              <IonItem button lines="full" key={e}>
                 <IonThumbnail slot="start">
                   <img
                     alt="Silhouette of mountains"
@@ -132,7 +170,7 @@ const OperationsCardList: React.FC<{
                     src="https://ionicframework.com/docs/img/demos/avatar.svg"
                   />
                 </IonAvatar> */}
-                <IonLabel>{e.titre}</IonLabel>
+                <IonLabel>{e}</IonLabel>
               </IonItem>
             ))}
           </IonList>

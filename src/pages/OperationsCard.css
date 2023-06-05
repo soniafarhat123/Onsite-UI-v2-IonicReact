@@ -38,3 +38,11 @@
     width: 300px;
   }
 }
+.ion-list-modal {
+  height: 530px;
+}
+
+.scrollable-list {
+  height: 535px;
+  overflow-y: auto;
+}
