@@ -1,0 +1,35 @@
+/* .popover {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.popover-content {
+  width: 20em;
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  border-radius: 4px;
+  padding: 10px;
+  
+  z-index: 1;
+  margin-right: 10px;
+}
+
+.popover-container:hover .popover-content {
+  display: block;
+}
+.button-container{
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+.popover{
+  flex-direction: row;
+}
+.ion-col-item {
+  padding: 0;
+  margin: 0;
+}
+ */

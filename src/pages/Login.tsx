@@ -56,7 +56,7 @@ const Login: React.FC = () => {
                 ></IonInput>
               </div>
 
-              <IonButton expand="block" type="submit" className="custom-button" href="/operationsCardList">
+              <IonButton expand="block" type="submit" className="custom-button" href="/operationsCardListTest">
                 SIGN IN
               </IonButton>
             </IonCardContent>

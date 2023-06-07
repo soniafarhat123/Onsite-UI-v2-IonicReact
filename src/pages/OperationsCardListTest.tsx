@@ -13,11 +13,10 @@ import {
   IonLabel,
   IonThumbnail,
   IonAvatar,
-  IonFab,
-  IonFabButton,
-  IonPopover,
-  IonFabList,
   IonSearchbar,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
 import {
   appsOutline,
@@ -50,7 +49,6 @@ const OperationsCardList: React.FC<{
   };
   //listMock.map((e)=>console.log(e.titre))
   /// Modal ///
-  const [showPopover, setShowPopover] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const listModal = [
@@ -59,14 +57,19 @@ const OperationsCardList: React.FC<{
     { id: 3, titre: "Modal 3" },
     { id: 4, titre: "Modal 4" },
     { id: 5, titre: "Modal 5" },
-  ];
+    { id: 6, titre: "Modal 6" },
+    { id: 7, titre: "Modal 7" },
+    { id: 8, titre: "Modal 8" },
+    { id: 9, titre: "Modal 9" },
+    { id: 10, titre: "Modal 10" },
+    { id: 11, titre: "Modal 11" },
+    { id: 12, titre: "Modal 12" },
+    { id: 13, titre: "Modal 13" },
+    { id: 14, titre: "Modal 14" },
 
-  const handleClickFab = () => {
-    setShowPopover(true);
-  };
+  ];
   const handleItemClick = (item: any) => {
     setSelectedItem(item.titre);
-    setShowPopover(false);
   };
   /// Search ///
   const [results, setResults] = useState<string[]>(listOps.map((e) => e.titre));
@@ -87,7 +90,7 @@ const OperationsCardList: React.FC<{
   const handleClickSearch = () => {
     setShowSearchBar(true);
   };
-  
+
   return (
     <IonPage>
       <IonHeader>
@@ -138,39 +141,46 @@ const OperationsCardList: React.FC<{
         ></IonSearchbar> */}
         {/* //////////////////////////////////////////////////////////////////////// */}
         {/* / Select Modal / */}
-        <IonFab slot="fixed" vertical="bottom" horizontal="end">
-          <IonButton>{selectedItem ? selectedItem : "Selected Item"}</IonButton>
-          <IonButton id="select-icon" onClick={handleClickFab}>
-            <IonIcon icon={chevronUp}></IonIcon>
-          </IonButton>
-          <IonFabList side="top">
-            <div className="test"></div>
-            <IonPopover
-              isOpen={showPopover}
-              onDidDismiss={() => setShowPopover(false)}
-              trigger="select-icon"
-              side="top"
-            >
-              <div className="ion-popover">
-                <IonList
-                  className={
-                    listModal.length > 11 ? "scrollable-list" : "ion-list-modal"
-                  }
-                >
-                  {listModal.map((e) => (
-                    <IonItem
-                      button
-                      key={e.id}
-                      onClick={() => handleItemClick(e)}
+        <IonGrid>
+          <div className="popover">
+            <IonRow>
+              <IonCol className="ion-col-item">
+                <IonButton>
+                  {selectedItem ? selectedItem : "Selected Item"}
+                </IonButton>
+              </IonCol>
+              <IonCol className="ion-col-item">
+                <div className="popover-container">
+                  <div className="popover-content">
+                    <IonList
+                      className={
+                        listModal.length > 11
+                          ? "scrollable-list"
+                          : "ion-list-modal"
+                      }
                     >
-                      {e.titre}
-                    </IonItem>
-                  ))}
-                </IonList>
-              </div>
-            </IonPopover>
-          </IonFabList>
-        </IonFab>
+                      {listModal.map((e) => (
+                        <IonItem
+                          button
+                          lines="full"
+                          key={e.id}
+                          onClick={() => handleItemClick(e)}
+                        >
+                          {e.titre}
+                        </IonItem>
+                      ))}
+                    </IonList>
+                  </div>
+                  <div className="button-container">
+                    <IonButton>
+                      <IonIcon icon={chevronUp}></IonIcon>
+                    </IonButton>
+                  </div>
+                </div>
+              </IonCol>
+            </IonRow>
+          </div>
+        </IonGrid>
         {/* //////////////////////////////////////////////////////////////////////////////// */}
         {viewMode === "cards" ? (
           <div className="ion-cards">

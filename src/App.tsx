@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import OperationsCard from "./pages/OperationsCard";
 import OperationsCardList from "./pages/OperationsCardList";
+import OperationsCardListTest from "./pages/OperationsCardListTest"
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -48,6 +49,12 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/operationsCardList">
             <OperationsCardList
+              darkMode={darkMode}
+              toggleDarkMode={toggleDarkMode}
+            />
+          </Route>
+          <Route exact path="/operationsCardListTest">
+            <OperationsCardListTest
               darkMode={darkMode}
               toggleDarkMode={toggleDarkMode}
             />
