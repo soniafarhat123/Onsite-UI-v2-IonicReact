@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -28,11 +28,14 @@ import {
   chevronUp,
   trashBin,
   search,
+  close,
+  filter,
 } from "ionicons/icons";
+import arrowUpDown from "../icons/arrow-up-down.svg";
 import "./OperationsCard.css";
 import IonCardComponent from "../components/IonCardComponent";
 
-const OperationsCardList: React.FC<{
+const OperationsCardListTest: React.FC<{
   darkMode: boolean;
   toggleDarkMode: () => void;
 }> = ({ darkMode, toggleDarkMode }) => {
@@ -49,10 +52,14 @@ const OperationsCardList: React.FC<{
   };
   //listMock.map((e)=>console.log(e.titre))
   /// Modal ///
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState("");
+  const [showList, setShowList] = useState(false);
 
   const listModal = [
-    { id: 1, titre: "Modal 1" },
+    {
+      id: 1,
+      titre: "Modal 1thnhtbhny ,nsqdbnqsbdbndqsnbqsd",
+    },
     { id: 2, titre: "Modal 2" },
     { id: 3, titre: "Modal 3" },
     { id: 4, titre: "Modal 4" },
@@ -61,15 +68,16 @@ const OperationsCardList: React.FC<{
     { id: 7, titre: "Modal 7" },
     { id: 8, titre: "Modal 8" },
     { id: 9, titre: "Modal 9" },
-    { id: 10, titre: "Modal 10" },
-    { id: 11, titre: "Modal 11" },
-    { id: 12, titre: "Modal 12" },
-    { id: 13, titre: "Modal 13" },
-    { id: 14, titre: "Modal 14" },
-
   ];
   const handleItemClick = (item: any) => {
     setSelectedItem(item.titre);
+    setShowList(false);
+  };
+  const handleClickList = () => {
+    setShowList(!showList);
+  };
+  const handleClickClose = () => {
+    setShowList(false);
   };
   /// Search ///
   const [results, setResults] = useState<string[]>(listOps.map((e) => e.titre));
@@ -96,19 +104,6 @@ const OperationsCardList: React.FC<{
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="secondary">
-            <div className={"search-bar"}>
-              {!showSearchBar ? (
-                <IonButton onClick={handleClickSearch} className="search-icon">
-                  <IonIcon icon={search}></IonIcon>
-                </IonButton>
-              ) : (
-                <IonSearchbar
-                  debounce={1000}
-                  clearIcon={trashBin}
-                  onIonInput={handleInput}
-                ></IonSearchbar>
-              )}
-            </div>
             <IonButton onClick={toggleViewMode}>
               <IonIcon
                 slot="icon-only"
@@ -132,56 +127,35 @@ const OperationsCardList: React.FC<{
           <IonTitle className="toolbar-title">Opérations</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent className="container">
+        <div className="search-filter-buttons">
+          <div className={"search-bar"}>
+            {!showSearchBar ? (
+              <IonButton onClick={handleClickSearch} className="button-icon">
+                <IonIcon icon={search}  color="dark"></IonIcon>
+              </IonButton>
+            ) : (
+              <IonSearchbar
+                debounce={1000}
+                clearIcon={trashBin}
+                onIonInput={handleInput}
+              ></IonSearchbar>
+            )}
+          </div>
+
+          <IonButton className="button-icon" >
+            <IonIcon color="dark" icon={filter}  ></IonIcon>
+          </IonButton>
+
+        </div>
+
         {/* / Search Input/ */}
         {/* <IonSearchbar
           debounce={1000}
           clearIcon={trashBin}
           onIonInput={handleInput}
         ></IonSearchbar> */}
-        {/* //////////////////////////////////////////////////////////////////////// */}
-        {/* / Select Modal / */}
-        <IonGrid>
-          <div className="popover">
-            <IonRow>
-              <IonCol className="ion-col-item">
-                <IonButton>
-                  {selectedItem ? selectedItem : "Selected Item"}
-                </IonButton>
-              </IonCol>
-              <IonCol className="ion-col-item">
-                <div className="popover-container">
-                  <div className="popover-content">
-                    <IonList
-                      className={
-                        listModal.length > 11
-                          ? "scrollable-list"
-                          : "ion-list-modal"
-                      }
-                    >
-                      {listModal.map((e) => (
-                        <IonItem
-                          button
-                          lines="full"
-                          key={e.id}
-                          onClick={() => handleItemClick(e)}
-                        >
-                          {e.titre}
-                        </IonItem>
-                      ))}
-                    </IonList>
-                  </div>
-                  <div className="button-container">
-                    <IonButton>
-                      <IonIcon icon={chevronUp}></IonIcon>
-                    </IonButton>
-                  </div>
-                </div>
-              </IonCol>
-            </IonRow>
-          </div>
-        </IonGrid>
-        {/* //////////////////////////////////////////////////////////////////////////////// */}
+      
         {viewMode === "cards" ? (
           <div className="ion-cards">
             {results.map((e) => (
@@ -215,9 +189,77 @@ const OperationsCardList: React.FC<{
             ))}
           </IonList>
         )}
+        {/* //////////////////////////////////////////////////////////////////////// */}
+        {/* / Select Modal / */}
+        <div className="select-modal">
+        <IonGrid>
+          <div className="popover">
+            <IonRow>
+              <IonCol className="ion-col-item">
+                <IonButton>
+                  {selectedItem
+                    ? selectedItem && selectedItem.length > 11
+                      ? `${selectedItem.slice(0, 26)}...`
+                      : selectedItem
+                    : "Selected Item"}
+                </IonButton>
+              </IonCol>
+
+              <IonCol className="ion-col-item">
+                <div className="popover-container">
+                  <div className="popover-content">
+                    {showList ? (
+                      <IonList
+                        className={
+                          listModal.length > 11
+                            ? "scrollable-list"
+                            : "ion-list-modal"
+                        }
+                      >
+                        <IonItem lines="full">
+                          <IonButton
+                            className="close-button"
+                            onClick={handleClickClose}
+                          >
+                            <IonIcon
+                              icon={close}
+                              color="primary"
+                              size="large"
+                            ></IonIcon>
+                          </IonButton>
+                        </IonItem>
+                        {listModal.map((e) => (
+                          <IonItem
+                            button
+                            lines="full"
+                            key={e.id}
+                            onClick={() => handleItemClick(e)}
+                          >
+                            {e && e.titre && e.titre.length > 34
+                              ? `${e.titre.slice(0, 34)} ...`
+                              : e.titre}
+                          </IonItem>
+                        ))}
+                      </IonList>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="button-container">
+                    <IonButton onClick={handleClickList}>
+                      <IonIcon icon={chevronUp}></IonIcon>
+                    </IonButton>
+                  </div>
+                </div>
+              </IonCol>
+            </IonRow>
+          </div>
+        </IonGrid>
+        </div>
+        {/* //////////////////////////////////////////////////////////////////////////////// */}
       </IonContent>
     </IonPage>
   );
 };
 
-export default OperationsCardList;
+export default OperationsCardListTest;

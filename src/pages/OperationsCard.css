@@ -1,10 +1,14 @@
+.container {
+  position: relative;
+}
 .toolbar-title {
   font-size: 24px;
 }
 .ion-cards {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-bottom: 16px;
+  
 }
 
 .ion-card {
@@ -41,7 +45,7 @@
 
 /* List of Modals */
 .popover {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
 }
@@ -50,13 +54,13 @@
   width: 20em;
   display: none;
   position: absolute;
-  bottom: 100%;
-  right: 0;
+  bottom: 3.5em;
+  right: 2em;
   z-index: 1;
   margin-right: 13px;
 }
 
-.popover-container:hover .popover-content {
+.popover-container .popover-content {
   display: block;
 }
 .button-container {
@@ -72,6 +76,7 @@
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   padding: 0;
+  width: 22em;
 }
 .scrollable-list {
   height: 34em;
@@ -79,10 +84,28 @@
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   padding: 0;
+  width: 22em;
+}
+
+.close-button {
+  --background: 0;
+  --box-shadow: 0;
+  position: relative;
+  left: 23.8em;
 }
 
 /* Search bar  */
+
 .search-bar ion-searchbar {
-  --background: transparent;
+  width: 25em;
+}
+.button-icon {
   --box-shadow: none;
+  --background: transparent;
+  width: 4em;
+}
+.search-filter-buttons {
+  display: flex;
+  
+  right: 0;
 }
