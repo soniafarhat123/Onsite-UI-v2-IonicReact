@@ -33,3 +33,38 @@
   margin: 0;
 }
  */
+
+.search-bar-test {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d8dce0;
+  height: 38px;
+  font-size: 15px;
+  margin: 8px;
+  border-radius: 10px;
+  background-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);;
+  padding: 8px;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  --highlight-color-focused: none;
+}
+.button-icon {
+  margin: 0;
+  --padding-end: 0;
+  --padding-start: 0;
+  font-size: 0.9rem;
+}
+
+.search-icon {
+  margin: 8px;
+  padding-right: 4px;
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+.ion-icon {
+  padding-right: 0.9em;
+}

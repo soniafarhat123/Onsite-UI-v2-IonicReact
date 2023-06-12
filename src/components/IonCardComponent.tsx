@@ -1,5 +1,5 @@
 import React from "react";
-import { IonCard, IonCardHeader, IonCardTitle } from "@ionic/react";
+import { IonCard, IonCardContent, IonLabel } from "@ionic/react";
 
 interface IonCardComponentProps {
   title: string;
@@ -17,9 +17,11 @@ const IonCardComponent: React.FC<IonCardComponentProps> = ({
   return (
     <IonCard className={classname}>
       <img alt={alt} src={src} />
-      <IonCardHeader>
-        <IonCardTitle>{title}</IonCardTitle>
-      </IonCardHeader>
+      <IonCardContent>
+        <IonLabel color={"dark"}>
+          <h2>{title}</h2>
+        </IonLabel>
+      </IonCardContent>
     </IonCard>
   );
 };
