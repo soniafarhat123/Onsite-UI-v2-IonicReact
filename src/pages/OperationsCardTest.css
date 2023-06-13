@@ -7,6 +7,7 @@
 .ion-cards {
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
   margin-bottom: 16px;
 }
 
@@ -97,14 +98,14 @@
 
 /* Search bar  */
 
-.search-bar-test {
+.search-bar {
   display: flex;
   align-items: center;
   border: 1px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);
   height: 38px;
   font-size: 15px;
   margin: 8px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);
   padding: 5px;
 }

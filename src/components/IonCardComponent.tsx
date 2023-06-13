@@ -2,10 +2,10 @@ import React from "react";
 import { IonCard, IonCardContent, IonLabel } from "@ionic/react";
 
 interface IonCardComponentProps {
-  title: string;
-  alt: string;
-  src: string;
-  classname: string;
+  title?: string;
+  alt?: string;
+  src?: string;
+  classname?: string;
 }
 
 const IonCardComponent: React.FC<IonCardComponentProps> = ({

@@ -15,8 +15,6 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonInput,
-  IonPopover,
 } from "@ionic/react";
 import {
   appsOutline,
@@ -26,12 +24,10 @@ import {
   moon,
   chevronUp,
   close,
-  filter,
-  caretUpSharp,
-  searchSharp,
 } from "ionicons/icons";
 import "./OperationsCardTest.css";
 import IonCardComponent from "../components/IonCardComponent";
+import SearchBar from "../components/SearchBar"
 
 const Operations: React.FC<{
   darkMode: boolean;
@@ -92,6 +88,12 @@ const Operations: React.FC<{
     );
   };
 
+  const listOfFilters = [
+    { id: 1, titre: "Date" },
+    { id: 2, titre: "Nom" },
+    { id: 3, titre: "Description" },
+  ];
+
   return (
     <IonPage>
       <IonHeader>
@@ -121,7 +123,7 @@ const Operations: React.FC<{
         </IonToolbar>
       </IonHeader>
       <IonContent className="container">
-        <div className="search-bar-test">
+        {/* <div className="search-bar">
           <IonIcon
             slot="icon-only"
             className="search-icon"
@@ -143,41 +145,27 @@ const Operations: React.FC<{
             dismissOnSelect={true}
             side="bottom"
             alignment="center"
-            showBackdrop={false} 
+            showBackdrop={false}
           >
             <IonContent scrollY={true}>
               <IonList lines="none">
-                <IonItem button>
-                  <IonIcon
-                    icon={caretUpSharp}
-                    size="small"
-                    className="ion-icon"
-                    color="primary"
-                  ></IonIcon>
-                  Date
-                </IonItem>
-                <IonItem button>
-                  <IonIcon
-                    icon={caretUpSharp}
-                    size="small"
-                    className="ion-icon"
-                    color="primary"
-                  ></IonIcon>
-                  Nom
-                </IonItem>
-                <IonItem button>
-                  <IonIcon
-                    icon={caretUpSharp}
-                    size="small"
-                    className="ion-icon"
-                    color="primary"
-                  ></IonIcon>
-                  Description
-                </IonItem>
+                {listOfFilters.map((e) => (
+                  <IonItem button key={e.id}>
+                    <IonIcon
+                      icon={caretUpSharp}
+                      size="small"
+                      className="ion-icon"
+                      color="primary"
+                    ></IonIcon>
+                    {e.titre}
+                  </IonItem>
+                ))}
               </IonList>
             </IonContent>
           </IonPopover>
-        </div>
+        </div> */}
+        <SearchBar handleInput={handleInput}
+        listOfFilters={listOfFilters} />
 
         {viewMode === "cards" ? (
           <div className="ion-cards">
@@ -214,7 +202,7 @@ const Operations: React.FC<{
         )}
         {/* //////////////////////////////////////////////////////////////////////// */}
         {/* / Select Modal / */}
-        <div className="select-modal">
+        {/* <div className="select-modal">
           <IonGrid>
             <div className="popover">
               <IonRow>
@@ -278,7 +266,7 @@ const Operations: React.FC<{
               </IonRow>
             </div>
           </IonGrid>
-        </div>
+        </div> */}
         {/* //////////////////////////////////////////////////////////////////////////////// */}
       </IonContent>
     </IonPage>

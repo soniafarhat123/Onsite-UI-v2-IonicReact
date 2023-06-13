@@ -5,8 +5,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import OperationsCard from "./pages/OperationsCard";
 import OperationsCardList from "./pages/OperationsCardList";
-import OperationsCardListTest from "./pages/OperationsCardListTest"
-import Operations from "./pages/Operations"
+import OperationsCardListTest from "./pages/OperationsCardListTest";
+import Operations from "./pages/Operations";
+import FormTabs from "./pages/FormTabs"
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -27,6 +28,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import useSwitchDarkMode from "./hooks/useSwitchDarkMode";
+import FormList from "./pages/FormList";
 
 setupIonicReact();
 
@@ -61,10 +63,10 @@ const App: React.FC = () => {
             />
           </Route>
           <Route exact path="/operations">
-            <Operations
-              darkMode={darkMode}
-              toggleDarkMode={toggleDarkMode}
-            />
+            <Operations darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          </Route>
+          <Route exact path="/formTabs">
+            <FormTabs />
           </Route>
           <Route exact path="/">
             <Redirect to="/login" />
