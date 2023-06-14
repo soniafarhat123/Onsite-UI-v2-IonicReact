@@ -1,3 +1,42 @@
+.ion-card-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --background: #066de3;
+  --color: #9efff0;
+  border-radius: 50px;
+  height: 3em;
+  width: 20em;
+}
+
+.ion-card-content-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ion-card-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  width: 1px;
+  height: 35px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 8px;
+}
+
+.button-without-shadow {
+  --box-shadow: none;
+  --background: none;
+  --padding-end: 0.5em;
+  --padding-start: 0.5em;
+}
+.small-card {
+  width: 12em; /* Ajustez la taille selon vos besoins */
+  height: 3em; /* Ajustez la taille selon vos besoins */
+}
 /* .popover {
   position: absolute;
   bottom: 0;
@@ -34,7 +73,7 @@
 }
  */
 
-.search-bar-test {
+/* .search-bar-test {
   display: flex;
   align-items: center;
   border: 1px solid #d8dce0;
@@ -67,4 +106,30 @@
 }
 .ion-icon {
   padding-right: 0.9em;
+} */
+
+/* 
+.button-text {
+  margin-right: 10px;
+ 
 }
+
+.separator {
+  width: 1px;
+  height: 43px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 8px;
+  margin-right: 1em;
+}
+
+.chevron-button {
+  --border-radius: 40px;
+  --background-color:#066de3;
+  height: 3.8em;
+}
+.icon-file-add{
+  padding-right: 0.4em;
+  height:2em;
+  width:1.5em;
+  
+} */

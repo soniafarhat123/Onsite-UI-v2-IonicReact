@@ -1,8 +1,117 @@
-.container{
+.container {
   position: relative;
+  transition: top 0.3s;
 }
-.file-add-icon{
+/* .file-add-icon{
   padding:0.3em;
   height:1.3em;
   width: 1.2em;
+} */
+/* List of Modals */
+.hide-searchbar {
+  top: -50px;
+}
+.popover {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.popover-content {
+  width: 20em;
+  display: none;
+  position: absolute;
+  bottom: 3.5em;
+  right: 2em;
+  z-index: 1;
+  margin-right: 13px;
+}
+
+.popover-container .popover-content {
+  display: block;
+}
+.button-container {
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+.ion-col-item {
+  padding: 0;
+  margin: 0;
+}
+.ion-list-modal {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  width: 22em;
+}
+.scrollable-list {
+  height: 34em;
+  overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  width: 22em;
+}
+
+.close-button {
+  --background: 0;
+  --box-shadow: 0;
+  position: relative;
+  right: 0;
+  --padding-end: 0;
+  --padding-start: 0;
+}
+
+/* Modals Button */
+
+.separator {
+  width: 1px;
+  height: 35px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 8px;
+}
+
+.chevron-button {
+  --border-radius: 20px;
+  --ion-color-primary: #066de3;
+  height: 3em;
+}
+.button-without-shadow {
+  --box-shadow: none;
+  --padding-end: 0.5em;
+  --padding-start: 0.5em;
+}
+.icon-file-add {
+  height: 2em;
+  width: 1.4em;
+  padding-right: 0.3em; 
+}
+/* Avatar  */
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  margin-left: 0.5em;
+  background: #6e66b6;
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  
+}
+
+.left-buttons{
+  padding-top: 3px;
+}
+.avatar-name{
+  font-size: 0.8em;
+}
+/* side Menu */
+.menu-content{
+  --padding-start : none;
+  --padding-end : none;
+  --padding-top : none;
+  --padding-bottom : none;
 }

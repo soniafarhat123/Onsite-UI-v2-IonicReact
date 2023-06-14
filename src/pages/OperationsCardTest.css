@@ -12,13 +12,13 @@
 }
 
 .ion-card {
-  width: 140px;
+  width: 160px;
   margin: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 4px rgba(243, 239, 239, 0.1), 0 2px 3px rgba(0, 0, 0, 0.06);
 }
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 370px) {
   .ion-card {
-    width: 170px;
+    width: 180px;
   }
 }
 @media screen and (min-width: 412px) {
@@ -29,6 +29,7 @@
 @media screen and (min-width: 700px) {
   .ion-card {
     width: 210px;
+    
   }
 }
 @media screen and (min-width: 900px) {
@@ -43,93 +44,3 @@
   }
 }
 
-/* List of Modals */
-.popover {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-.popover-content {
-  width: 20em;
-  display: none;
-  position: absolute;
-  bottom: 3.5em;
-  right: 2em;
-  z-index: 1;
-  margin-right: 13px;
-}
-
-.popover-container .popover-content {
-  display: block;
-}
-.button-container {
-  padding-right: 10px;
-  padding-bottom: 5px;
-}
-
-.ion-col-item {
-  padding: 0;
-  margin: 0;
-}
-.ion-list-modal {
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  padding: 0;
-  width: 22em;
-}
-.scrollable-list {
-  height: 34em;
-  overflow-y: auto;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  padding: 0;
-  width: 22em;
-}
-
-.close-button {
-  --background: 0;
-  --box-shadow: 0;
-  position: relative;
-  right: 0;
-  --padding-end: 0;
-  --padding-start: 0;
-}
-
-/* Search bar  */
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);
-  height: 38px;
-  font-size: 15px;
-  margin: 8px;
-  border-radius: 5px;
-  background-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);
-  padding: 5px;
-}
-
-.input {
-  flex: 1;
-  border: none;
-  outline: none;
-  --highlight-color-focused: none;
-}
-.button-icon {
-  margin: 0;
-  width: 2em;
-  --padding-end: 0;
-  --padding-start: 0;
-  font-size: 0.9rem;
-}
-
-.search-icon {
-  margin: 8px;
-  padding-right: 4px;
-  font-size: 1.5rem;
-  font-weight: 200;
-}
-.ion-icon {
-  padding-right: 0.9em;
-}

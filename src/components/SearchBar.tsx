@@ -8,6 +8,7 @@ import {
   IonList,
   IonPopover,
 } from "@ionic/react";
+import "./SearchBar.css"
 import { caretUpSharp, filter, searchSharp } from "ionicons/icons";
 
 interface SearchBarProps {
@@ -45,7 +46,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         showBackdrop={false}
       >
         <IonContent scrollY={true}>
-          <IonList lines="none">
+          <IonList lines="full" className="ion-list-padding">
             {listOfFilters.map((e) => (
               <IonItem button key={e.id}>
                 <IonIcon

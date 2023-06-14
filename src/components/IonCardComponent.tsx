@@ -6,6 +6,7 @@ interface IonCardComponentProps {
   alt?: string;
   src?: string;
   classname?: string;
+  href?: string;
 }
 
 const IonCardComponent: React.FC<IonCardComponentProps> = ({
@@ -13,9 +14,10 @@ const IonCardComponent: React.FC<IonCardComponentProps> = ({
   alt,
   src,
   classname,
+  href,
 }) => {
   return (
-    <IonCard className={classname}>
+    <IonCard className={classname} href={href}>
       <img alt={alt} src={src} />
       <IonCardContent>
         <IonLabel color={"dark"}>
