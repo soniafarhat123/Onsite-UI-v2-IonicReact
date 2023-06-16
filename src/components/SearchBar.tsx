@@ -35,15 +35,16 @@ const SearchBar: React.FC<SearchBarProps> = ({
         clearInput={true}
         onIonInput={handleInput}
       ></IonInput>
-      <IonButton fill="clear" className="button-icon" id="popover-button">
+      <IonButton fill="clear" className="button-icon" id="popover-button-tri">
         <IonIcon slot="icon-only" icon={filter} />
       </IonButton>
       <IonPopover
-        trigger="popover-button"
-        dismissOnSelect={true}
+        trigger="popover-button-tri"
+        dismissOnSelect={false}
         side="bottom"
         alignment="center"
         showBackdrop={false}
+        className="pop-width"
       >
         <IonContent scrollY={true}>
           <IonList lines="full" className="ion-list-padding">
@@ -52,8 +53,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 <IonIcon
                   icon={caretUpSharp}
                   size="small"
-                  className="ion-icon"
                   color="primary"
+                  slot="start"
                 ></IonIcon>
                 {e.titre}
               </IonItem>

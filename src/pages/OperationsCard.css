@@ -1,4 +1,4 @@
-.container {
+/* .container {
   position: relative;
 }
 .toolbar-title {
@@ -41,10 +41,10 @@
   .ion-card {
     width: 300px;
   }
-}
+} */
 
 /* List of Modals */
-.popover {
+/* .popover {
   position: fixed;
   bottom: 0;
   right: 0;
@@ -62,13 +62,13 @@
 
 .popover-container .popover-content {
   display: block;
-}
-.button-container {
-  padding-right: 10px;
-  padding-bottom: 5px;
-}
+} */
+/* .button-container { */
+  /* padding-right: 10px;
+  padding-bottom: 5px; */
+/* } */
 
-.ion-col-item {
+/* .ion-col-item {
   padding: 0;
   margin: 0;
 }
@@ -87,11 +87,6 @@
   width: 22em;
 }
 
-.close-button {
-  --background: 0;
-  --box-shadow: 0;
-  position: relative;
-  left: 23.8em;
-}
+ */
 
 

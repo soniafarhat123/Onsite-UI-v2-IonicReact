@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  transition: top 0.3s;
+  overflow: auto;
 }
 /* .file-add-icon{
   padding:0.3em;
@@ -8,9 +8,6 @@
   width: 1.2em;
 } */
 /* List of Modals */
-.hide-searchbar {
-  top: -50px;
-}
 .popover {
   position: fixed;
   bottom: 0;
@@ -31,8 +28,8 @@
   display: block;
 }
 .button-container {
-  padding-right: 10px;
-  padding-bottom: 5px;
+  padding-right: 5px;
+  /* padding-bottom: 5px; */
 }
 
 .ion-col-item {
@@ -54,18 +51,35 @@
   width: 22em;
 }
 
-.close-button {
+.close-button.md {
   --background: 0;
   --box-shadow: 0;
   position: relative;
-  right: 0;
-  --padding-end: 0;
-  --padding-start: 0;
+  left: 24em;
+}
+.close-button.ios {
+  --background: 0;
+  --box-shadow: 0;
+  position: relative;
+  left: 22em;
+}
+.close-item {
+  --inner-padding-end: none;
+}
+.close-icon {
+  width: 1.3em;
+  height: 1.3em;
+}
+.pop-grid {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-/* Modals Button */
+/* Modals Button v1*/
 
-.separator {
+/* .separator {
   width: 1px;
   height: 35px;
   background-color: rgb(255, 255, 255);
@@ -76,17 +90,67 @@
   --border-radius: 20px;
   --ion-color-primary: #066de3;
   height: 3em;
+  
 }
 .button-without-shadow {
   --box-shadow: none;
+  --padding-end: 0.5em;
+  --padding-start: 0.5em;
+  
+}
+
+.icon-file-add {
+  height: 2em;
+  width: 1.4em;
+  padding-right: 0.3em; 
+} */
+/* Modals Button v2*/
+.ion-card-modal {
+  display: flex;
+
+  justify-content: center;
+  --background: #066de3;
+  --color: #9efff0;
+  border-radius: 50px;
+  height: 3em;
+  width: 20em;
+  transition: 0.2s;
+  margin-bottom: 10px;
+}
+
+.ion-card-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  width: 1px;
+  height: 35px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 8px;
+  position: relative;
+  right: 0;
+}
+
+.button-without-shadow {
+  --box-shadow: none;
+  --background: none;
   --padding-end: 0.5em;
   --padding-start: 0.5em;
 }
 .icon-file-add {
   height: 2em;
   width: 1.4em;
-  padding-right: 0.3em; 
+  padding-right: 0.3em;
 }
+.small-card {
+  width: 12em;
+}
+.select-modal {
+  --padding-top: none;
+  --padding-bottom: none;
+}
+
 /* Avatar  */
 .avatar {
   display: flex;
@@ -99,19 +163,57 @@
   cursor: pointer;
   font-weight: bold;
   color: rgb(255, 255, 255);
-  
 }
 
-.left-buttons{
+.left-buttons {
   padding-top: 3px;
 }
-.avatar-name{
+.avatar-name {
   font-size: 0.8em;
 }
 /* side Menu */
-.menu-content{
-  --padding-start : none;
-  --padding-end : none;
-  --padding-top : none;
-  --padding-bottom : none;
+.menu-content {
+  --padding-start: none;
+  --padding-end: none;
+  --padding-top: none;
+  --padding-bottom: none;
+}
+/* hide search bar && change Modal button  */
+.search-toolbar {
+  transition: opacity 0.1s ease-in-out;
+}
+.search-toolbar.show {
+  opacity: 1;
+}
+
+.search-toolbar.hide {
+  opacity: 0;
+}
+.form-header {
+}
+.form-header.show {
+  height: 7em;
+}
+.form-header.hide {
+  height: 3.5em;
+}
+.form-header.ios.hide {
+  height: 2.8em;
+}
+
+.list-forms {
+  padding-top: 0;
+  padding-bottom: 4em;
+}
+
+.form-bt {
+  --box-shadow: none;
+  --background: none;
+  --color: grey;
+  --padding-end: 0.5em;
+  --padding-start: 0.5em;
+}
+.note-padding.md {
+  padding-top: 20px;
+  font-size: 15px;
 }

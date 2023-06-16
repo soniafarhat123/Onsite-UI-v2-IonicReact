@@ -4,6 +4,7 @@ import {
   IonButton,
   IonButtons,
   IonCard,
+  IonCardContent,
   IonCol,
   IonContent,
   IonGrid,
@@ -15,15 +16,32 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
+  IonNote,
   IonPage,
+  IonPopover,
   IonRow,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { chevronUp, close, moon, power, sunny } from "ionicons/icons";
+import {
+  archive,
+  caretUpSharp,
+  chevronUp,
+  close,
+  ellipsisVertical,
+  moon,
+  power,
+  removeCircleOutline,
+  sunny,
+  trash,
+} from "ionicons/icons";
 import "./FormList.css";
 import SearchBar from "../components/SearchBar";
 import FileAddIcon from "../icons/add-file.svg";
+
+interface ScrollDetail {
+  scrollTop: number;
+}
 
 const FormList: React.FC<{
   darkMode: boolean;
@@ -36,7 +54,7 @@ const FormList: React.FC<{
     { id: 3, titre: "Description" },
   ];
   /* List of modals */
-  const [selectedItem, setSelectedItem] = useState("");
+  // const [selectedItem, setSelectedItem] = useState("");
   const [showList, setShowList] = useState(false);
 
   const listModal = [
@@ -53,17 +71,63 @@ const FormList: React.FC<{
     { id: 8, titre: "Modal 8" },
     { id: 9, titre: "Modal 9" },
   ];
-  const handleItemClick = (item: any) => {
-    setSelectedItem(item.titre);
-    setShowList(false);
-  };
+  // const handleItemClick = (item: any) => {
+  //   setSelectedItem(item.titre);
+  //   setShowList(false);
+  // };
   const handleClickList = () => {
     setShowList(!showList);
   };
   const handleClickClose = () => {
     setShowList(false);
   };
-  // hide search bar
+
+  // hide search bar && change Modal button
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("up");
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  const handleScroll = (event: CustomEvent<ScrollDetail>) => {
+    const currentScrollTop = event.detail.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+      setScrollDirection("down");
+    } else if (currentScrollTop < lastScrollTop) {
+      setScrollDirection("up");
+    }
+    console.log(currentScrollTop);
+
+    setLastScrollTop(currentScrollTop);
+  };
+  // List of forms
+  const listOfForms = [
+    { id: 0, titre: "Item 1", date: "01/06/2023" },
+    { id: 1, titre: "Item 2", date: "02/06/2023" },
+    { id: 2, titre: "Item 3", date: "03/06/2023" },
+    { id: 3, titre: "Item 4", date: "04/06/2023" },
+    { id: 4, titre: "Item 5", date: "06/06/2023" },
+    { id: 5, titre: "Item 6", date: "07/06/2023" },
+    { id: 6, titre: "Item 7", date: "08/06/2023" },
+    { id: 7, titre: "Item 8", date: "09/06/2023" },
+    { id: 8, titre: "Item 9", date: "10/06/2023" },
+    { id: 9, titre: "Item 10", date: "11/06/2023" },
+    { id: 10, titre: "Item 11", date: "12/06/2023" },
+    { id: 11, titre: "Item 12", date: "13/06/2023" },
+    { id: 12, titre: "Item 13", date: "14/06/2023" },
+    { id: 13, titre: "Item 14", date: "15/06/2023" },
+    { id: 14, titre: "Item 15", date: "16/06/2023" },
+    { id: 15, titre: "Item 16", date: "17/06/2023" },
+    { id: 16, titre: "Item 17", date: "18/06/2023" },
+    { id: 17, titre: "Item 18", date: "19/06/2023" },
+    { id: 18, titre: "Item 19", date: "20/06/2023" },
+    { id: 19, titre: "Item 20", date: "21/06/2023" },
+    { id: 20, titre: "Item 21", date: "22/06/2023" },
+    { id: 21, titre: "Item 22", date: "23/06/2023" },
+    { id: 22, titre: "Item 23", date: "24/06/2023" },
+  ];
+  const [selectedPopoverButton, setSelectedPopoverButton] = useState<
+    number | null
+  >(null);
+
   return (
     <>
       <IonMenu contentId="main-content">
@@ -97,7 +161,11 @@ const FormList: React.FC<{
         </IonContent>
       </IonMenu>
       <IonPage id="main-content">
-        <IonHeader>
+        <IonHeader
+          className={`form-header ${
+            scrollDirection === "down" ? "hide" : "show"
+          }`}
+        >
           <IonToolbar>
             <IonButtons slot="end">
               <IonButton onClick={toggleDarkMode}>
@@ -118,81 +186,100 @@ const FormList: React.FC<{
             </IonButtons>
             <IonTitle>Formulaires</IonTitle>
           </IonToolbar>
-          <IonToolbar>
+          <IonToolbar
+            className={`search-toolbar ${
+              scrollDirection === "down" ? "hide" : "show"
+            }`}
+          >
             {/* / Search Bar / */}
             <SearchBar listOfFilters={listOfFilters} />
           </IonToolbar>
+          {/* {scrollDirection === "down" ? (
+            <CreateAnimation
+              duration={1500}
+              iterations={Infinity}
+              fromTo={[
+                {
+                  property: "transform",
+                  fromValue: "translateY(0px)",
+                  toValue: "translateY(100px)",
+                },
+                { property: "opacity", fromValue: "1", toValue: "0" },
+              ]}
+            >
+              
+                
+                <SearchBar listOfFilters={listOfFilters} />
+             
+            </CreateAnimation>
+          ) : (
+            <IonToolbar>
+          
+            <SearchBar listOfFilters={listOfFilters} />
+          </IonToolbar>
+          )}
+           */}
         </IonHeader>
-        <IonContent className="container" scrollY={true}>
+        <IonContent
+          className="container"
+          scrollEvents={true}
+          onIonScroll={handleScroll}
+        >
           {/* / List of Forms / */}
-          <IonList lines="full">
-            <IonItem button detail={true}>
-              Item 1
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 2
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 3
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 4
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 5
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 6
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 7
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 8
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 9
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 10
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 11
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 11
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 12
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 13
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 14
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 15
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 16
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 17
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 18
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 19
-            </IonItem>
-            <IonItem button detail={true}>
-              Item 20
-            </IonItem>
+          <IonList lines="full" className="list-forms">
+            {listOfForms.map((e) => (
+              <IonItem button detail={true} key={e.id}>
+                <IonIcon
+                  icon={removeCircleOutline}
+                  size="large"
+                  slot="start"
+                ></IonIcon>
+                <IonLabel>{e.titre}</IonLabel>
+                <IonNote slot="end" className="note-padding">
+                  {e.date}
+                </IonNote>
+                <IonButton
+                  className="form-bt"
+                  slot="end"
+                  id={`popover-button-param-${e.id}`}
+                  onClick={() => {
+                    setSelectedPopoverButton(e.id);
+                    console.log("hello world");
+                  }}
+                >
+                  <IonIcon slot="icon-only" icon={ellipsisVertical}></IonIcon>
+                </IonButton>
+              </IonItem>
+            ))}
           </IonList>
+          <IonPopover
+            trigger={
+              selectedPopoverButton !== null
+                ? `popover-button-param-${selectedPopoverButton}`
+                : undefined
+            }
+            dismissOnSelect={true}
+            alignment="center"
+            showBackdrop={false}
+            className="pop-width"
+          >
+            <IonContent>
+              <IonList lines="full" className="ion-list-padding">
+                <IonItem button>
+                  <IonIcon icon={trash} size="small" slot="start"></IonIcon>
+                  Supprimer
+                </IonItem>
+                <IonItem button>
+                  <IonIcon icon={archive} size="small" slot="start"></IonIcon>
+                  Archiver
+                </IonItem>
+              </IonList>
+            </IonContent>
+          </IonPopover>
+
           {/* / Select Modal / */}
           <div className="select-modal">
-            <IonGrid>
+            <IonGrid className="pop-grid">
               <div className="popover">
                 <IonRow>
                   {/* <IonCol className="ion-col-item">
@@ -220,7 +307,7 @@ const FormList: React.FC<{
                                 : "ion-list-modal"
                             }
                           >
-                            <IonItem lines="full">
+                            <IonItem lines="full" className="close-item">
                               <IonButton
                                 className="close-button"
                                 onClick={handleClickClose}
@@ -228,7 +315,7 @@ const FormList: React.FC<{
                                 <IonIcon
                                   icon={close}
                                   color="primary"
-                                  size="large"
+                                  className="close-icon"
                                 ></IonIcon>
                               </IonButton>
                             </IonItem>
@@ -237,7 +324,7 @@ const FormList: React.FC<{
                                 button
                                 lines="full"
                                 key={e.id}
-                                onClick={() => handleItemClick(e)}
+                                // onClick={() => handleItemClick(e)}
                               >
                                 {e && e.titre && e.titre.length > 34
                                   ? `${e.titre.slice(0, 34)} ...`
@@ -253,7 +340,36 @@ const FormList: React.FC<{
                         {/* <IonButton onClick={handleClickList}>
                         <IonIcon src={chevronUp}></IonIcon>
                       </IonButton> */}
-                        <IonButton className="chevron-button">
+
+                        <IonCard
+                          className={`ion-card-modal ${
+                            lastScrollTop === 0 ? "" : "small-card"
+                          }`}
+                        >
+                          <IonCardContent className="ion-card-buttons">
+                            <IonButton
+                              style={{ marginLeft: "0.5em" }}
+                              className={"button-without-shadow "}
+                              onClick={() => console.log("xcvxvcxcv")}
+                            >
+                              <IonIcon
+                                icon={FileAddIcon}
+                                className="icon-file-add"
+                              ></IonIcon>
+                              {lastScrollTop === 0 && (
+                                <span> Create new form</span>
+                              )}
+                            </IonButton>
+                            <div className="separator"></div>
+                            <IonButton
+                              className={"button-without-shadow "}
+                              onClick={handleClickList}
+                            >
+                              <IonIcon icon={chevronUp} />
+                            </IonButton>
+                          </IonCardContent>
+                        </IonCard>
+                        {/* <IonButton className="chevron-button">
                           <IonButton
                             style={{ marginLeft: "0.5em" }}
                             className={"button-without-shadow "}
@@ -263,7 +379,9 @@ const FormList: React.FC<{
                               icon={FileAddIcon}
                               className="icon-file-add"
                             ></IonIcon>
-                            {!true && <span> Create new form</span>}
+                            {lastScrollTop === 0 && (
+                              <span> Create new form</span>
+                            )}
                           </IonButton>
                           <div className="separator"></div>
                           <IonButton
@@ -272,7 +390,7 @@ const FormList: React.FC<{
                           >
                             <IonIcon icon={chevronUp} />
                           </IonButton>
-                        </IonButton>
+                        </IonButton> */}
                       </div>
                     </div>
                   </IonCol>

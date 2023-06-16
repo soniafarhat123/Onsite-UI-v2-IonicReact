@@ -1,4 +1,4 @@
-.ion-card-modal {
+/* .ion-card-modal {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,9 +34,9 @@
   --padding-start: 0.5em;
 }
 .small-card {
-  width: 12em; /* Ajustez la taille selon vos besoins */
-  height: 3em; /* Ajustez la taille selon vos besoins */
-}
+  width: 12em; 
+  height: 3em;
+} */
 /* .popover {
   position: absolute;
   bottom: 0;
@@ -132,4 +132,16 @@
   height:2em;
   width:1.5em;
   
+} */
+
+/* .scroll-button {
+  transition: opacity 0.3s ease-out;
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
 } */

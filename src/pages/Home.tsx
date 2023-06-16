@@ -21,6 +21,8 @@ import {
   IonMenuButton,
   IonCard,
   IonCardContent,
+  IonListHeader,
+  CreateAnimation,
 } from "@ionic/react";
 import {
   chevronUp,
@@ -34,14 +36,266 @@ import {
 } from "ionicons/icons";
 import FileAddIcon from "../icons/add-file.svg";
 import "./Home.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Animation, createAnimation } from "@ionic/react";
+
+interface ScrollDetail {
+  scrollTop: number;
+}
 
 const Home: React.FC = () => {
-  const isNewFormVisible = true;
+  useEffect(() => {
+    const startAnimation = async () => {
+      const element = document.querySelector('.animated-element');
+
+      if (element instanceof HTMLElement) {
+        const animation = createAnimation()
+          .addElement(element)
+          .duration(1500)
+          .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+          .fromTo('opacity', '1', '0.2');
+
+        await animation.play();
+
+        // Hide the toolbar with an animation
+        const toolbar = document.querySelector('.toolbar');
+        if (toolbar instanceof HTMLElement) {
+          const toolbarAnimation = createAnimation()
+            .addElement(toolbar)
+            .duration(1500)
+            .iterations(1)
+            .fromTo('transform', 'translateY(0px)', 'translateY(-100%)')
+            .fromTo('opacity', '1', '0');
+
+          await toolbarAnimation.play().then(() => {
+            toolbar.style.display = 'none';
+          });
+        }
+      }
+    };
+
+    startAnimation();
+  }, []);
   return (
     // <IonButton>Hello world</IonButton>
     <>
-      <IonCard className={`ion-card-modal ${isNewFormVisible ? '' : 'small-card'}`}>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar className="toolbar">
+            <IonButton>Button 1</IonButton>
+            <IonButton>Button 2</IonButton>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div className="animated-element">
+            <IonButton>hello world</IonButton>
+          </div>
+        </IonContent>
+      </IonPage>
+      {/* <IonPage>
+        <IonContent scrollEvents={true} onIonScroll={handleScroll}>
+          <div>
+            <IonList lines="full">
+              <IonListHeader>
+                <IonLabel>Listes</IonLabel>
+                <IonButton>See All</IonButton>
+              </IonListHeader>
+              <IonItem button>
+                <IonLabel>Param 1</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 2</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 3</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 4</IonLabel>
+              </IonItem>
+              <IonItem button>
+                <IonLabel>Param 5</IonLabel>
+              </IonItem>
+            </IonList>
+            <IonButton
+              className={`scroll-button ${
+                scrollDirection === "down" ? "show" : "hide"
+              }`}
+            >
+              Button Content
+            </IonButton>
+            <IonItem button>
+              <IonLabel>Param 2</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 3</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 4</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 5</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 2</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 3</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 4</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 5</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 2</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 3</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 4</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 5</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 2</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 3</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 4</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 5</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 2</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 3</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 4</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 5</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 2</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 3</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 4</IonLabel>
+            </IonItem>
+            <IonItem button>
+              <IonLabel>Param 5</IonLabel>
+            </IonItem>
+          </div>
+        </IonContent>
+      </IonPage> */}
+
+      {/* <IonCard className={`ion-card-modal ${isNewFormVisible ? '' : 'small-card'}`}>
         <IonCardContent className="ion-card-content-center">
           <div className="ion-card-buttons">
             <IonButton
@@ -58,7 +312,7 @@ const Home: React.FC = () => {
             </IonButton>
           </div>
         </IonCardContent>
-      </IonCard>
+      </IonCard> */}
 
       {/* <IonMenu contentId="main-content">
         <IonHeader>
