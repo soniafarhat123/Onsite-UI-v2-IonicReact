@@ -24,6 +24,7 @@
   --padding-end: 0;
   --padding-start: 0;
   font-size: 0.9rem;
+  margin-left : 0.5em
 }
 
 .search-icon {
@@ -40,3 +41,4 @@
 .pop-width{
   --width: 200px
 }
+

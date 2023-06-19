@@ -83,7 +83,7 @@ const Operations: React.FC<{
         </IonToolbar>
         <IonToolbar>
           {/* Search Bar */}
-          <SearchBar handleInput={handleInput} listOfFilters={listOfFilters} />
+          <SearchBar handleInput={handleInput} listOfFilters={listOfFilters} isFilterPage={false}/>
           {/* End Search Bar */}
         </IonToolbar>
       </IonHeader>

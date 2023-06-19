@@ -8,17 +8,28 @@ import {
   IonList,
   IonPopover,
 } from "@ionic/react";
-import "./SearchBar.css"
-import { caretUpSharp, filter, searchSharp } from "ionicons/icons";
+import "./SearchBar.css";
+import {
+  caretUpSharp,
+  filter,
+  funnel,
+  funnelOutline,
+  funnelSharp,
+  searchSharp,
+} from "ionicons/icons";
 
 interface SearchBarProps {
   handleInput?: (ev: CustomEvent) => void;
+  isFilterPage: boolean;
+  onClickFilter?: () => void;
   listOfFilters: { id: number; titre: string }[];
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   handleInput,
   listOfFilters,
+  isFilterPage,
+  onClickFilter,
 }) => {
   return (
     <div className="search-bar">
@@ -35,9 +46,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
         clearInput={true}
         onIonInput={handleInput}
       ></IonInput>
+      {isFilterPage ? (
+        <IonButton fill="clear" className="button-icon" onClick={onClickFilter}>
+          <IonIcon slot="icon-only" icon={funnel} />
+        </IonButton>
+      ) : (
+        ""
+      )}
       <IonButton fill="clear" className="button-icon" id="popover-button-tri">
         <IonIcon slot="icon-only" icon={filter} />
       </IonButton>
+
       <IonPopover
         trigger="popover-button-tri"
         dismissOnSelect={false}

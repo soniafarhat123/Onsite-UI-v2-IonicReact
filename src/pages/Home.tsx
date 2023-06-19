@@ -44,51 +44,25 @@ interface ScrollDetail {
 }
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    const startAnimation = async () => {
-      const element = document.querySelector('.animated-element');
-
-      if (element instanceof HTMLElement) {
-        const animation = createAnimation()
-          .addElement(element)
-          .duration(1500)
-          .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
-          .fromTo('opacity', '1', '0.2');
-
-        await animation.play();
-
-        // Hide the toolbar with an animation
-        const toolbar = document.querySelector('.toolbar');
-        if (toolbar instanceof HTMLElement) {
-          const toolbarAnimation = createAnimation()
-            .addElement(toolbar)
-            .duration(1500)
-            .iterations(1)
-            .fromTo('transform', 'translateY(0px)', 'translateY(-100%)')
-            .fromTo('opacity', '1', '0');
-
-          await toolbarAnimation.play().then(() => {
-            toolbar.style.display = 'none';
-          });
-        }
-      }
-    };
-
-    startAnimation();
-  }, []);
   return (
     // <IonButton>Hello world</IonButton>
     <>
       <IonPage>
         <IonHeader>
-          <IonToolbar className="toolbar">
-            <IonButton>Button 1</IonButton>
-            <IonButton>Button 2</IonButton>
+          <IonToolbar>
+            <IonTitle>Error 404</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-          <div className="animated-element">
-            <IonButton>hello world</IonButton>
+        <IonContent className="error404-content">
+          <div className="error404-container">
+            <h1 className="error404-heading">Oops! Page not found</h1>
+            <p className="error404-description">
+              The page you are looking for could not be found. Please check the
+              URL or go back to the homepage.
+            </p>
+            <a href="/" className="error404-link">
+              Go to Homepage
+            </a>
           </div>
         </IonContent>
       </IonPage>

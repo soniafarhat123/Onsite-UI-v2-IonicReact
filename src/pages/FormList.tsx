@@ -21,10 +21,12 @@ import {
   IonPopover,
   IonRow,
   IonTitle,
+  IonToggle,
   IonToolbar,
 } from "@ionic/react";
 import {
   archive,
+  caretForwardOutline,
   caretUpSharp,
   chevronUp,
   close,
@@ -32,6 +34,7 @@ import {
   moon,
   power,
   removeCircleOutline,
+  settingsSharp,
   sunny,
   trash,
 } from "ionicons/icons";
@@ -142,19 +145,29 @@ const FormList: React.FC<{
               <IonLabel>Listes</IonLabel>
               <IonButton>See All</IonButton>
             </IonListHeader>
-            <IonItem button>
-              <IonLabel>Param 1</IonLabel>
+            <IonItem>
+              <IonIcon slot="start" icon={darkMode ? sunny : moon} />
+              <IonLabel>
+                {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              </IonLabel>
+              <IonToggle
+                slot="end"
+                name="darkMode"
+                checked={darkMode}
+                onIonChange={toggleDarkMode}
+              />
             </IonItem>
-            <IonItem button>
-              <IonLabel>Param 2</IonLabel>
+            <IonItem button detail={true} detailIcon={caretForwardOutline}>
+              <IonIcon slot="start" icon={settingsSharp} />
+              <IonLabel>Réglages</IonLabel>
             </IonItem>
-            <IonItem button>
+            <IonItem button detail={true} detailIcon={caretForwardOutline}>
               <IonLabel>Param 3</IonLabel>
             </IonItem>
-            <IonItem button>
+            <IonItem button detail={true} detailIcon={caretForwardOutline}>
               <IonLabel>Param 4</IonLabel>
             </IonItem>
-            <IonItem button>
+            <IonItem button detail={true} detailIcon={caretForwardOutline}>
               <IonLabel>Param 5</IonLabel>
             </IonItem>
           </IonList>
@@ -168,10 +181,6 @@ const FormList: React.FC<{
         >
           <IonToolbar>
             <IonButtons slot="end">
-              <IonButton onClick={toggleDarkMode}>
-                <IonIcon slot="start" icon={darkMode ? sunny : moon} />
-              </IonButton>
-
               <IonButton href="/Login">
                 <IonIcon slot="icon-only" icon={power} color="danger"></IonIcon>
               </IonButton>
@@ -192,7 +201,7 @@ const FormList: React.FC<{
             }`}
           >
             {/* / Search Bar / */}
-            <SearchBar listOfFilters={listOfFilters} />
+            <SearchBar listOfFilters={listOfFilters} isFilterPage={true} />
           </IonToolbar>
           {/* {scrollDirection === "down" ? (
             <CreateAnimation
@@ -228,54 +237,64 @@ const FormList: React.FC<{
           {/* / List of Forms / */}
           <IonList lines="full" className="list-forms">
             {listOfForms.map((e) => (
-              <IonItem button detail={true} key={e.id}>
-                <IonIcon
-                  icon={removeCircleOutline}
-                  size="large"
-                  slot="start"
-                ></IonIcon>
-                <IonLabel>{e.titre}</IonLabel>
-                <IonNote slot="end" className="note-padding">
-                  {e.date}
-                </IonNote>
-                <IonButton
-                  className="form-bt"
-                  slot="end"
-                  id={`popover-button-param-${e.id}`}
-                  onClick={() => {
-                    setSelectedPopoverButton(e.id);
-                    console.log("hello world");
-                  }}
+              <>
+                <IonItem button detail={true} key={e.id}>
+                  <IonIcon
+                    icon={removeCircleOutline}
+                    size="large"
+                    slot="start"
+                  ></IonIcon>
+                  <IonLabel>{e.titre}</IonLabel>
+                  <IonNote slot="end" className="note-padding">
+                    {e.date}
+                  </IonNote>
+                  <IonButton
+                    className="form-bt"
+                    slot="end"
+                    id={`popover-button-param-${e.id}`}
+                    onClick={() => {
+                      setSelectedPopoverButton(e.id);
+                      console.log("hello world");
+                    }}
+                  >
+                    <IonIcon slot="icon-only" icon={ellipsisVertical}></IonIcon>
+                  </IonButton>
+                </IonItem>
+                <IonPopover
+                  trigger={
+                    selectedPopoverButton !== null
+                      ? `popover-button-param-${e.id}`
+                      : undefined
+                  }
+                  dismissOnSelect={true}
+                  alignment="center"
+                  showBackdrop={false}
+                  className="pop-width"
                 >
-                  <IonIcon slot="icon-only" icon={ellipsisVertical}></IonIcon>
-                </IonButton>
-              </IonItem>
+                  <IonContent>
+                    <IonList lines="full" className="ion-list-padding">
+                      <IonItem button>
+                        <IonIcon
+                          icon={trash}
+                          size="small"
+                          slot="start"
+                        ></IonIcon>
+                        Supprimer
+                      </IonItem>
+                      <IonItem button>
+                        <IonIcon
+                          icon={archive}
+                          size="small"
+                          slot="start"
+                        ></IonIcon>
+                        Archiver
+                      </IonItem>
+                    </IonList>
+                  </IonContent>
+                </IonPopover>
+              </>
             ))}
           </IonList>
-          <IonPopover
-            trigger={
-              selectedPopoverButton !== null
-                ? `popover-button-param-${selectedPopoverButton}`
-                : undefined
-            }
-            dismissOnSelect={true}
-            alignment="center"
-            showBackdrop={false}
-            className="pop-width"
-          >
-            <IonContent>
-              <IonList lines="full" className="ion-list-padding">
-                <IonItem button>
-                  <IonIcon icon={trash} size="small" slot="start"></IonIcon>
-                  Supprimer
-                </IonItem>
-                <IonItem button>
-                  <IonIcon icon={archive} size="small" slot="start"></IonIcon>
-                  Archiver
-                </IonItem>
-              </IonList>
-            </IonContent>
-          </IonPopover>
 
           {/* / Select Modal / */}
           <div className="select-modal">
@@ -369,6 +388,7 @@ const FormList: React.FC<{
                             </IonButton>
                           </IonCardContent>
                         </IonCard>
+
                         {/* <IonButton className="chevron-button">
                           <IonButton
                             style={{ marginLeft: "0.5em" }}
@@ -394,6 +414,7 @@ const FormList: React.FC<{
                       </div>
                     </div>
                   </IonCol>
+                  {/* <IonCol> <div className="circle" onClick={handleClickList}><IonIcon icon={chevronUp}></IonIcon></div></IonCol> */}
                 </IonRow>
               </div>
             </IonGrid>
