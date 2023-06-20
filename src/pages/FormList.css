@@ -137,6 +137,9 @@
   --background: none;
   --padding-end: 0.5em;
   --padding-start: 0.5em;
+  /*for ios*/
+  --background-activated: none;
+  --background-hover: none;
 }
 .icon-file-add {
   height: 2em;
@@ -212,6 +215,9 @@
   --color: grey;
   --padding-end: 0.5em;
   --padding-start: 0.5em;
+  /*for ios*/
+  --background-activated: none;
+  --background-hover: none;
 }
 .note-padding.md {
   padding-top: 20px;
@@ -232,6 +238,7 @@
   background-color: #0056b3;
 }
 
+/* QRCode */
 .qr-code-icon {
   display: flex;
   align-items: center;
@@ -240,8 +247,6 @@
   bottom: 0;
   left: 55%;
 }
-
-/* QRCode */
 
 ion-modal#qrcode-modal {
   --width: fit-content;
@@ -253,6 +258,4 @@ ion-modal#qrcode-modal {
 
 ion-modal#qrcode-modal h1 {
   margin: 20px 20px 10px 125px;
-  
 }
-
