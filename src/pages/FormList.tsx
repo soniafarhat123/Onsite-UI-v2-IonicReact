@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   IonAvatar,
   IonButton,
@@ -10,12 +10,14 @@ import {
   IonGrid,
   IonHeader,
   IonIcon,
+  IonImg,
   IonItem,
   IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
   IonMenuToggle,
+  IonModal,
   IonNote,
   IonPage,
   IonPopover,
@@ -32,7 +34,9 @@ import {
   close,
   ellipsisVertical,
   moon,
+  personCircle,
   power,
+  qrCodeOutline,
   removeCircleOutline,
   settingsSharp,
   sunny,
@@ -131,6 +135,13 @@ const FormList: React.FC<{
     number | null
   >(null);
 
+  // QR code
+  const modal = useRef<HTMLIonModalElement>(null);
+
+  const dismiss = () => {
+    modal.current?.dismiss();
+  };
+
   return (
     <>
       <IonMenu contentId="main-content">
@@ -171,6 +182,22 @@ const FormList: React.FC<{
               <IonLabel>Param 5</IonLabel>
             </IonItem>
           </IonList>
+          <IonItem
+            lines="none"
+            button
+            className="qr-code-icon"
+            id="open-QRCode-dialog"
+          >
+            <IonLabel>QR Code</IonLabel>
+            <IonIcon slot="end" icon={qrCodeOutline} color="dark" size="large" />
+          </IonItem>
+          <IonModal id="qrcode-modal" ref={modal} trigger="open-QRCode-dialog">
+            <div className="wrapper">
+              <h1>QR Code</h1>
+
+              <IonImg src="/assets/images/QR_Code.png" style={{ width: "350px" , height: "350px" }} ></IonImg>
+            </div>
+          </IonModal>
         </IonContent>
       </IonMenu>
       <IonPage id="main-content">
