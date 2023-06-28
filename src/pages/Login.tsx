@@ -32,7 +32,7 @@ const Login: React.FC = () => {
                 Sign in
               </IonCardSubtitle>
             </IonCardHeader>
-            <IonCardContent>
+            <IonCardContent >
               <div className="input-container">
                 <IonInput
                   type="text"

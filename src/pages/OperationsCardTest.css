@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  
 }
 .toolbar-title {
   font-size: 24px;
@@ -13,34 +14,35 @@
 
 .ion-card {
   width: 160px;
-  margin: 8px;
+  margin: 6px;
   box-shadow: 0 2px 4px rgba(243, 239, 239, 0.1), 0 2px 3px rgba(0, 0, 0, 0.06);
 }
 @media screen and (min-width: 370px) {
   .ion-card {
-    width: 180px;
+    width: 45%;
+    
   }
 }
 @media screen and (min-width: 412px) {
   .ion-card {
-    width: 190px;
+    width: 45%;
   }
 }
 @media screen and (min-width: 700px) {
   .ion-card {
-    width: 210px;
+    width: 30%;
     
   }
 }
 @media screen and (min-width: 900px) {
   .ion-card {
-    width: 250px;
+    width: 18%;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .ion-card {
-    width: 300px;
+    width: 13%;
   }
 }
 

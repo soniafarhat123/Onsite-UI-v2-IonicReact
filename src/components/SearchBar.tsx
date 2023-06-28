@@ -37,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         slot="icon-only"
         className="search-icon"
         icon={searchSharp}
-        color="primary"
+        color="medium"
       />
 
       <IonInput

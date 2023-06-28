@@ -138,9 +138,9 @@ const FormList: React.FC<{
   // QR code
   const modal = useRef<HTMLIonModalElement>(null);
 
-  const dismiss = () => {
-    modal.current?.dismiss();
-  };
+  // const dismiss = () => {
+  //   modal.current?.dismiss();
+  // };
 
   return (
     <>
@@ -206,7 +206,7 @@ const FormList: React.FC<{
             scrollDirection === "down" ? "hide" : "show"
           }`}
         >
-          <IonToolbar>
+          <IonToolbar mode="md">
             <IonButtons slot="end">
               <IonButton href="/Login">
                 <IonIcon slot="icon-only" icon={power} color="danger"></IonIcon>
@@ -222,7 +222,7 @@ const FormList: React.FC<{
             </IonButtons>
             <IonTitle>Formulaires</IonTitle>
           </IonToolbar>
-          <IonToolbar
+          <IonToolbar mode="md"
             className={`search-toolbar ${
               scrollDirection === "down" ? "hide" : "show"
             }`}
@@ -230,31 +230,6 @@ const FormList: React.FC<{
             {/* / Search Bar / */}
             <SearchBar listOfFilters={listOfFilters} isFilterPage={true} />
           </IonToolbar>
-          {/* {scrollDirection === "down" ? (
-            <CreateAnimation
-              duration={1500}
-              iterations={Infinity}
-              fromTo={[
-                {
-                  property: "transform",
-                  fromValue: "translateY(0px)",
-                  toValue: "translateY(100px)",
-                },
-                { property: "opacity", fromValue: "1", toValue: "0" },
-              ]}
-            >
-              
-                
-                <SearchBar listOfFilters={listOfFilters} />
-             
-            </CreateAnimation>
-          ) : (
-            <IonToolbar>
-          
-            <SearchBar listOfFilters={listOfFilters} />
-          </IonToolbar>
-          )}
-           */}
         </IonHeader>
         <IonContent
           className="container"

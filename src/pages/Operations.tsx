@@ -13,7 +13,14 @@ import {
   IonLabel,
   IonThumbnail,
 } from "@ionic/react";
-import { appsOutline, listOutline, power, sunny, moon } from "ionicons/icons";
+import {
+  appsOutline,
+  listOutline,
+  power,
+  sunny,
+  moon,
+  chevronUp,
+} from "ionicons/icons";
 import "./OperationsCardTest.css";
 import IonCardComponent from "../components/IonCardComponent";
 import SearchBar from "../components/SearchBar";
@@ -83,7 +90,11 @@ const Operations: React.FC<{
         </IonToolbar>
         <IonToolbar>
           {/* Search Bar */}
-          <SearchBar handleInput={handleInput} listOfFilters={listOfFilters} isFilterPage={false}/>
+          <SearchBar
+            handleInput={handleInput}
+            listOfFilters={listOfFilters}
+            isFilterPage={false}
+          />
           {/* End Search Bar */}
         </IonToolbar>
       </IonHeader>
@@ -123,6 +134,11 @@ const Operations: React.FC<{
           </IonList>
         )}
         {/* End Cards + List of Operations */}
+        <IonButton href="/formTabs">Click Me ! </IonButton>
+        <IonButton shape="round">
+          <IonIcon icon={chevronUp}></IonIcon>
+          <IonLabel>|</IonLabel>
+        </IonButton>
       </IonContent>
     </IonPage>
   );

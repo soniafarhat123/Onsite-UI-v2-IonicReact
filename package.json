@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npx cap copy && ionic build --prod && cd android && gradlew assembleRelease -Poverwrite -Pandroid.injected.signing.store.file=C:\\Users\\sonia\\Desktop\\new\\keystores\\mykey.keystore -Pandroid.injected.signing.store.password=formi2023 -Pandroid.injected.signing.key.alias=myalias -Pandroid.injected.signing.key.password=formi2023",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
