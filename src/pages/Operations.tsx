@@ -65,23 +65,19 @@ const Operations: React.FC<{
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader mode="md">
         <IonToolbar>
-          <IonButtons slot="secondary">
+          <IonButtons slot="end">
             <IonButton onClick={toggleViewMode}>
               <IonIcon
                 slot="icon-only"
                 icon={viewMode === "cards" ? listOutline : appsOutline}
-                //color="primary"
-                className="toolbar-icon"
               ></IonIcon>
             </IonButton>
 
             <IonButton onClick={toggleDarkMode}>
-              <IonIcon slot="start" icon={darkMode ? sunny : moon} />
+              <IonIcon icon={darkMode ? sunny : moon} />
             </IonButton>
-          </IonButtons>
-          <IonButtons slot="primary">
             <IonButton href="/Login">
               <IonIcon slot="icon-only" icon={power} color="danger"></IonIcon>
             </IonButton>

@@ -22,6 +22,7 @@ import {
   IonPage,
   IonPopover,
   IonRow,
+  IonSearchbar,
   IonTitle,
   IonToggle,
   IonToolbar,
@@ -145,7 +146,7 @@ const FormList: React.FC<{
   return (
     <>
       <IonMenu contentId="main-content">
-        <IonHeader>
+        <IonHeader >
           <IonToolbar>
             <IonTitle>Paramètres</IonTitle>
           </IonToolbar>
@@ -189,24 +190,32 @@ const FormList: React.FC<{
             id="open-QRCode-dialog"
           >
             <IonLabel>QR Code</IonLabel>
-            <IonIcon slot="end" icon={qrCodeOutline} color="dark" size="large" />
+            <IonIcon
+              slot="end"
+              icon={qrCodeOutline}
+              color="dark"
+              size="large"
+            />
           </IonItem>
           <IonModal id="qrcode-modal" ref={modal} trigger="open-QRCode-dialog">
             <div className="wrapper">
               <h1>QR Code</h1>
 
-              <IonImg src="/assets/images/QR_Code.png" style={{ width: "350px" , height: "350px" }} ></IonImg>
+              <IonImg
+                src="/assets/images/QR_Code.png"
+                style={{ width: "350px", height: "350px" }}
+              ></IonImg>
             </div>
           </IonModal>
         </IonContent>
       </IonMenu>
       <IonPage id="main-content">
-        <IonHeader
+        <IonHeader  mode="md"
           className={`form-header ${
             scrollDirection === "down" ? "hide" : "show"
           }`}
         >
-          <IonToolbar mode="md">
+          <IonToolbar>
             <IonButtons slot="end">
               <IonButton href="/Login">
                 <IonIcon slot="icon-only" icon={power} color="danger"></IonIcon>
@@ -222,7 +231,8 @@ const FormList: React.FC<{
             </IonButtons>
             <IonTitle>Formulaires</IonTitle>
           </IonToolbar>
-          <IonToolbar mode="md"
+          <IonToolbar
+            mode="md"
             className={`search-toolbar ${
               scrollDirection === "down" ? "hide" : "show"
             }`}
